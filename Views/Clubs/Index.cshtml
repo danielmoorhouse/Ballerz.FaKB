@@ -1,0 +1,28 @@
+@model Ballerz.Football.Models.Clubs.ClubIndexModel
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="row">
+@foreach (var item in Model.ClubList) {
+     <div class="col-md-3 text-center">
+                
+           
+            <img src="@item.TeamBadgeUrl" style="width: 70%;" />   <br/> 
+          <h5><strong>@item.ClubName</strong></h5>    
+            <p><strong>@item.LeagueName</strong></p>    
+   </div>
+}
+ </div>
+</body>
+</html>

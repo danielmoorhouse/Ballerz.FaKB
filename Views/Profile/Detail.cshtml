@@ -1,0 +1,36 @@
+@using Microsoft.AspNetCore.Identity
+@using Humanizer
+@model Ballerz.Football.Models.Profile.ProfileDetailModel
+@inject RoleManager<Ballerz.Football.Data.ApplicationRole> RoleManager
+@inject UserManager<Ballerz.Football.Data.ApplicationUser> UserManager
+
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">
+           
+        </div>
+    </div>
+    <div class="row userProfile">
+        <div class="col-md-4 text-center">
+            <img class="img img-circle" src="@Model.ProfileImageUrl" style="width: 50%; padding-top: 15px; border-radius: 25px; " />
+        <h3><strong>@Model.FirstName @Model.LastName </strong> &nbsp;</h3>
+                <h4> <strong>@@@Model.UserName</strong></h4>
+             @if (@Model.IsAdmin)
+            {
+                <span style="color: #ffdaa0; background-color: #1f243d; padding: 5px;"><strong>Administrator</strong></span>
+            }
+            <h5>Supports: <strong> @Model.TeamName </strong> <img src="@Model.TeamBadgeUrl" style="width: 50px;" /></h5>
+             <h5><strong> @Model.Location</strong> <img src="@Model.CountryFlagUrl" style="width: 50px;" /></h5>
+            <h5><strong>Joined: @Model.MemberSince.ToShortDateString().Humanize()</strong></h5>
+        </div>
+        <div class="col-md-8">
+            <h3><strong>@Model.FirstName's Latest Forum Posts</strong></h3>
+           
+         
+            
+            
+   
+        </div>
+    </div>
+</div>
+<hr/>

@@ -1,0 +1,111 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<Ballerz.Football.Data.ApplicationUser> UserManager
+@inject SignInManager<Ballerz.Football.Data.ApplicationUser> SignInManager    
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ballerz.Football</title>
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    
+       <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          @if(SignInManager.IsSignedIn(User))
+                    {
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+      </li>
+                            <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+       Club Knowledgebase
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" asp-controller="Continents" asp-action="Index">Continents</a>
+        <a class="dropdown-item" asp-controller="Countries" asp-action="Index">Countries Index</a>
+        <a class="dropdown-item" asp-controller="Clubs" asp-action="Index">Club Index</a>
+      </div>
+    </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-controller="Forum" asp-action="Index">Forums</a>
+      </li>
+                              <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+       User Settings
+      </a>
+      <div class="dropdown-menu text-center">
+          <h5><strong>User</strong></h5>
+          <hr/>
+    <a class="dropdown-item" asp-controller="Profile" asp-action="Detail" asp-route-id="@UserManager.GetUserId(User)">My Profile</a>
+       <hr/>
+          @if (User.IsInRole("Site Admin"))
+                                {
+                                    <h5><strong>Admin</strong></h5>
+                                    <hr/>
+                                     <a class="dropdown-item" asp-controller="Continents" asp-action="Index">Continents</a>
+                                     <a class="dropdown-item" asp-controller="Continents" asp-action="Create">Create Continents</a>
+        <a class="dropdown-item" asp-controller="Countries" asp-action="Index">Countries Index</a>
+        <a class="dropdown-item" asp-controller="Countries" asp-action="Create">Create Countries</a>
+        <a class="dropdown-item" asp-controller="Clubs" asp-action="Index">Club Index</a>
+          <a class="dropdown-item" asp-controller="Clubs" asp-action="Create">Create Club</a>
+        <a class="dropdown-item" asp-controller="Clubs" asp-action="Index">Club Index</a>
+          <a class="dropdown-item" asp-controller="Countries" asp-action="Index">Countries Index</a>
+        <a class="dropdown-item" asp-controller="Clubs" asp-action="Index">Club Index</a>
+          <a class="dropdown-item" asp-controller="Countries" asp-action="Index">Countries Index</a>
+        <a class="dropdown-item" asp-controller="Clubs" asp-action="Index">Club Index</a>
+          <a class="dropdown-item" asp-controller="Countries" asp-action="Index">Countries Index</a>
+        <a class="dropdown-item" asp-controller="Clubs" asp-action="Index">Club Index</a>
+                                }
+      </div>
+    </li>  
+   
+    </ul>
+                    }
+  </div>  
+</nav>
+  
+    <div class="container-fluid" >
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - Ballerz.Football - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,38 @@
+@model Ballerz.Football.Models.Stadiums.StadiumIndexModel
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="row">
+@foreach (var item in Model.StadList) {
+    <div class="col-md-3 text-center">
+                <p style="display: none;">@item.Id</p>
+               
+          
+                
+           <img src="@item.StadiumImageUrl" style="width: 90%; border-radius: 25px;" />
+           <h5><strong>@item.StadiumName</strong></h5> 
+         
+            
+               <img src="@item.ClubBadgeUrl" style="width: 25%" /> 
+         
+         
+         
+                <!-- <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> -->
+                </div>
+    }
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+@model Ballerz.Football.Models.ClubPerson.ClubPersonIndexModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="row">
+@foreach (var item in Model.CPList) {
+      <div class="col-md-3 text-center">
+          <img src="@item.PlayerImageUrl" style="width: 80%" />
+               <h5><strong>@item.FirstName @item.LastName</strong></h5> 
+         
+              <p><strong>@item.ClubName</strong></p>   
+           
+              <p><strong>@item.CountryName</strong></p>    
+           
+               <p><strong>@item.ClubRoleName</strong></p>   
+         
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+            </div>
+            <!-- <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td> -->
+    
+}
+   </div>
+</body>
+</html>

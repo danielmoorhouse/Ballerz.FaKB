@@ -1,0 +1,38 @@
+@model Ballerz.Football.Models.Seasons.SeasonIndexModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               <p><strong>Season</strong></p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SeasonList) {
+        <tr>
+            <td>
+                @item.Season
+            </td>
+            <td>
+         
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

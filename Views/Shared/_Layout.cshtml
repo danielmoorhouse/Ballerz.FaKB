@@ -1,0 +1,114 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Ballerz.Football.Data.ApplicationUser> UserManager
+@inject SignInManager<Ballerz.Football.Data.ApplicationUser> SignInManager    
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Ballerz.Football</title>
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    
+        <nav class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="color-white" asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><h3>Ballerz | </h3></a>
+            </div>
+            
+            <div class="navbar-collapse collapse nav">
+                <ul class="nav navbar-nav">
+                              
+                       @if(SignInManager.IsSignedIn(User))
+                    {
+                     <li><a class="nav" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+
+                    <li><a class="nav" asp-area="" asp-controller="Continents" asp-action="Index">Knowledgebase</a></li>
+                     <li><a class="nav" asp-controller="Forum" asp-action="Index">Forums</a></li>
+                        <li class="dropdown">
+                            <a class="nav" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">Profile</li>
+                                <li><a class="nav" asp-controller="Profile" asp-action="Detail" asp-route-id="@UserManager.GetUserId(User)">My Profile</a></li>
+                
+                                @if (User.IsInRole("Site Admin"))
+                                {
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header nav">Admin</li>
+                                    <li><a class="nav" asp-controller="Forum" asp-action="Create">Create Forum</a></li>
+                                   
+                                    <li><a class="nav" asp-controller="Profile" asp-action="Index">View Users</a></li>
+                                      <li><a class="nav" asp-area="" asp-controller="Countries" asp-action="Create">Create Countries</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Countries" asp-action="Index">Countries Index</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Leagues" asp-action="Index">Leagues Index</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Leagues" asp-action="Create">Create League</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Clubs" asp-action="Create">Create Team</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Managers" asp-action="Create">Create Manager</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Managers" asp-action="Index">Manager Index</a></li>
+                      <li><a class="nav" asp-area="" asp-controller="Stadiums" asp-action="Create">Create Stadium</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Stadiums" asp-action="Index">Stadium Index</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Seasons" asp-action="Create">Add Season</a></li>
+                    <li><a class="nav" asp-area="" asp-controller="Seasons" asp-action="Index">Season Index</a></li>
+                     <li><a class="nav" asp-area="" asp-controller="ClubHistory" asp-action="Create">Add History</a></li>
+                       <li><a class="nav" asp-area="" asp-controller="Positions" asp-action="Index">Position Index</a></li>
+                     <li><a class="nav" asp-area="" asp-controller="Positions" asp-action="Create">Add Position</a></li>
+                     <li><a class="nav" asp-area="" asp-controller="Players" asp-action="List">Player Index</a></li>
+                     <li><a class="nav" asp-area="" asp-controller="Players" asp-action="Create">Add Player</a></li>
+                     <li><a class="nav" asp-controller="Forum" asp-action="Index">Forums</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                   
+                   
+                  
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+  
+    <div class="container" style="margin-top: 5em;">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - Ballerz.Football - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

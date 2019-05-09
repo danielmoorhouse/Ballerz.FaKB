@@ -1,0 +1,65 @@
+@model Ballerz.Football.Models.Forum.ForumIndexModel
+<style>
+
+    .spacer {
+        border-top: 2px solid orange;
+    }
+</style>
+<div class="container body-content"  >
+    <div class="row sectionHeader" style="padding: 3%; margin-bottom: 5%;">
+        <div class="sectionHeading"><img src="/images/backgrounds/" style="width: 20%; opacity: 0.4;  margin-right: 10%; float: right;" /></div>
+        <div class="sectionDescription">
+            <h3>Welcome to <strong>Ballerz Football Forums</h3></strong>. <br/>
+           <h4> Posts are categorized into separate forums by leagues, clubs etc.</h4>
+            <h5 style="margin-bottom: 25px;">
+                Please read the Forum Guidelines before creating a new post.
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <span>You must be a <a asp-controller="Account" asp-action="Register">registered member</a> to create a new post.</span>
+                }
+            </h5>
+            
+        </div>
+    </div>
+
+    <div class="row" id="forumIndexContent">
+        <table class="table" id="forumIndexTable">
+            <tbody>
+                @foreach (var forum in Model.ForumList)
+                {
+                    <tr class="spacer">
+                        <td>
+                            <div class="forumLogo"></div>
+                            <div class="forumData">
+                                <div class="forumTitle">
+                                   <img src="@forum.ImageUrl" style="width: 50px" /> <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
+                                </div>
+                                <div class="forumSubTitle">
+                                    @if (forum.HasRecentPost)
+                                    {
+                                        <div class="hasRecentPost">Hot</div>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="forumPostCount">
+                              <p>@forum.NumberOfPosts Posts</p>  
+                            </div>
+                            <div class="forumMemberCount">
+                                <p>@forum.NumberOfUsers Users</p>
+                                
+                            </div>
+                        </td>
+                        <td>
+                            <div class="forumDescription">
+                                <p> @forum.Description</p>
+                               
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

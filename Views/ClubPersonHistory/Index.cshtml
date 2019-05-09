@@ -1,0 +1,92 @@
+@model Ballerz.Football.Models.ClubPersonHistory.ClubPersonHistoryIndexModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        p {
+            padding-top: 10%;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="text-center" style="background-color: grey;">
+          
+            <th>
+              <p>Playing For</p>  
+            </th>
+            <th>
+               <p>Season</p> 
+            </th>
+            <th>
+            <p>League Name</p>
+            </th>
+             <th>
+            <p>Appearances</p>
+            </th>
+            <th>
+                 <span style="width: 50px; font-size: 25px; background-color: red; color: red;">R</span>
+            </th>
+            <th>
+                <span style="width: 50px; font-size: 25px; background-color: yellow; color: yellow;">Y</span>
+            </th>
+            <th>
+               <img src="/images/backgrounds/football.png" class="" style="width: 40px;" />
+            </th>
+            <th>
+               <p>Position</p> 
+            </th>
+            <th>
+               <p>Points</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ClubPersonHistoryList) {
+        <tr class="text-center" style="background-color: lightgrey;">
+           <td>
+               <strong>@item.ClubName</strong> 
+            </td>
+            <td>
+               <strong> @item.Season</strong>
+            </td>
+            <td>
+               <strong> @item.CompName </strong>
+            </td>
+             <td>
+               <strong> @item.Games </strong>
+            </td>
+            <td>
+               <strong>@item.RedCards</strong> 
+            </td>
+            <td>
+               <strong> @item.YellowCards</strong>
+            </td>
+            <td>
+               <strong>@item.Goals</strong> 
+            </td>
+            <td>
+               <strong> @item.Position</strong>
+            </td>
+            <td>
+               <strong>@item.Points</strong> 
+            </td>
+            <td>
+         
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
